@@ -1,5 +1,7 @@
 pragma solidity ^0.8.18;
 
+error Raffle_NotEnoughEthSent();
+
 contract Raffle {
     uint256 private immutable i_entranceFee;
 
@@ -7,7 +9,9 @@ contract Raffle {
         i_entranceFee = entranceFee;
     }
 
-    function enterRaffle() public {}
+    function enterRaffle() public payable {
+        if ( msg.value < i_entranceFee ) revert Raffle_NotEnoughEthSent();
+    }
 
     function pickWinner() public {}
 
