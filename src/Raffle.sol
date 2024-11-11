@@ -16,6 +16,10 @@ contract Raffle {
         s_lastTimeStamp = block.timestamp;
     }
 
+    function pickWinner() external view {
+        if (block.timestamp - s_lastTimeStamp < i_interval) revert();
+    }
+
     function enterRaffle() public payable {
         if ( msg.value < i_entranceFee ) revert Raffle_NotEnoughEthSent();
         s_players.push(payable(msg.sender));
