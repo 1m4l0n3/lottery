@@ -39,6 +39,7 @@ contract Raffle is VRFConsumerBaseV2Plus {
     uint256 public lastRequestId;
 
     event EnteredRaffle(address indexed player);
+    event PickedWinner(address indexed winner);
 
     constructor(uint256 entranceFee, uint256 interval, address vrfCoordinator, bytes32 gasLane, uint64 subscriptionId, uint32 callbackGasLimit) VRFConsumerBaseV2Plus(vrfCoordinator) {
         i_entranceFee = entranceFee;
@@ -89,6 +90,8 @@ contract Raffle is VRFConsumerBaseV2Plus {
         if (!success) {
             revert Raffle__TransferFailed();
         }
-
+        s_players = new address payable[](0);
+        s_lastTimeStamp = block.timestamp;
+        emit PickedWinner(winner);
     }
 }
