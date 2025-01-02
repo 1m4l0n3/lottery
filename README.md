@@ -1,17 +1,20 @@
-## Foundry
+# Lottery Smart Contract (Raffle)
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This repository contains a smart contract implementation for a decentralized lottery system (Raffle) on the Ethereum blockchain. The contract uses Chainlink VRF (Verifiable Random Function) for generating a provably fair and tamper-proof random winner. It also integrates Chainlink Automation to handle periodic tasks such as selecting a winner.
 
-Foundry consists of:
+## What is a Lottery (Raffle)?
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+A lottery, or raffle, is a game of chance where participants contribute funds for an opportunity to win the collected pool. In this smart contract:
+- Participants can enter the lottery by sending a specified amount of Ether.
+- After a defined interval, the contract automatically selects a random winner from the participants using Chainlink VRF.
+- The entire Ether balance of the contract is transferred to the winner.
 
-## Documentation
+## Key Features
 
-https://book.getfoundry.sh/
+- **Decentralized Randomness**: Ensures fairness using Chainlink VRF for selecting the winner.
+- **Automated Execution**: Uses Chainlink Automation to trigger the winner selection process at regular intervals.
+- **Player Management**: Maintains a list of participants and resets it after each round.
+- **Security**: Protects against common vulnerabilities like reentrancy.
 
 ## Usage
 
